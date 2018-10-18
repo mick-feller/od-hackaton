@@ -1,0 +1,194 @@
+{
+  "name": "od-hackaton",
+  "version": "0.2.0",
+  "author": "%user-name% <%user-email%>",
+  "dependencies": {
+    "@babel/cli": "7.1.2",
+    "@babel/core": "7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
+    "@babel/plugin-transform-runtime": "7.1.0",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-stage-0": "7.0.0",
+    "@babel/register": "7.0.0",
+    "@babel/runtime": "7.1.2",
+    "ajv": "^6.5.4",
+    "autoprefixer": "^9.2.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-inline-react-svg": "^1.0.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "base-href-webpack-plugin": "^2.0.0",
+    "case-sensitive-paths-webpack-plugin": "2.1.2",
+    "chalk": "2.4.1",
+    "chokidar": "^2.0.4",
+    "copy-webpack-plugin": "^4.5.3",
+    "core-js": "^2.5.7",
+    "cross-env": "^5.2.0",
+    "cross-fetch": "^2.2.2",
+    "css-loader": "1.0.0",
+    "css-modules-require-hook": "^4.2.3",
+    "dotenv": "^6.1.0",
+    "dotenv-webpack": "^1.5.7",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "2.0.0",
+    "fingerprintjs2": "^1.8.5",
+    "fs-extra": "7.0.0",
+    "history": "^4.7.2",
+    "html-entities": "^1.2.1",
+    "html-webpack-plugin": "3.2.0",
+    "interpolate-html-plugin": "^3.0.0",
+    "jest": "^23.6.0",
+    "node-sass": "^4.9.4",
+    "object-assign": "4.1.1",
+    "openssl-self-signed-certificate": "^1.1.6",
+    "postcss": "^7.0.5",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-loader": "^3.0.0",
+    "promise": "^8.0.2",
+    "prop-types": "^15.6.2",
+    "raf": "^3.4.0",
+    "raw-loader": "^0.5.1",
+    "react": "^16.5.2",
+    "react-dev-utils": "^6.0.5",
+    "react-dom": "^16.5.2",
+    "react-helmet": "^5.2.0",
+    "react-perf-devtool": "^3.1.8",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-config": "^1.0.0-beta.4",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-thunk": "^2.3.0",
+    "request": "2.83.0",
+    "sass-lint": "^1.12.1",
+    "sass-loader": "^7.1.0",
+    "sass-variable-loader": "^0.1.2",
+    "style-loader": "^0.23.1",
+    "sw-precache-webpack-plugin": "0.11.5",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-manifest-plugin": "^2.0.4",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "scripts": {
+    "start": "cross-env BRANCH=dev cross-env HTTPS=true node scripts/start.js",
+    "build:staging": "BRANCH=staging node scripts/build.js",
+    "build": "BRANCH=prod node scripts/build.js",
+    "test": "cross-env BRANCH=dev node scripts/test.js --env=jsdom",
+    "ci_test": "BRANCH=sqs CI=true NODE_ENV=test node scripts/test.js --env=jsdom",
+    "postversion": "git push && git push --tags",
+    "lint": "cross-env NODE_ENV=development eslint --ext .jsx --ext .js src/. server/.",
+    "sass-lint": "sass-lint -v -q",
+    "fix": "cross-env NODE_ENV=development eslint --fix  --ext .jsx --ext .js src/."
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}",
+      "!src/routes/**/*.{js,jsx,mjs}"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "coverageDirectory": "build/test-reports",
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/config/jest/testSetup.js",
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx|mjs)$": "<rootDir>/config/jest/jest.transform.js",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "node_modules",
+      "src/lib/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/src/lib/",
+      "/node_modules/"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    },
+    "verbose": true,
+    "moduleFileExtensions": [
+      "web.js",
+      "mjs",
+      "js",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 85,
+        "functions": 85,
+        "lines": 85,
+        "statements": -10
+      }
+    }
+  },
+  "jest-junit": {
+    "suiteName": "jest tests",
+    "output": "build/test-reports/junit.xml",
+    "classNameTemplate": "{classname} - {title}",
+    "titleTemplate": "{classname} - {title}",
+    "ancestorSeparator": " > ",
+    "usePathForSuiteName": "true"
+  },
+  "eslintIgnore": [
+    "public/static/lib/*.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/officedepot/AppIdPlaceholder.git"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.odplabs.com/repository/npm-repo/"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-formatter-pretty": "^1.3.0",
+    "eslint-import-resolver-babel-module": "^5.0.0-beta.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-flowtype": "^3.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "jest-enzyme": "^7.0.0",
+    "jest-junit": "^5.2.0",
+    "size-plugin": "^1.0.1",
+    "webpack-bundle-analyzer": "^3.0.2"
+  },
+  "license": "UNLICENSED"
+}

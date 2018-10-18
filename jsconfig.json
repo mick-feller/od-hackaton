@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "paths": {
+      "api/*": ["src/api/*"],
+      "components/*": ["src/components/*"],
+      "containers/*": ["src/containers/*"],
+      "redux/*": ["src/redux/*"],
+      "routes/*": ["src/routes/*"],
+      "test/*": ["src/test/*"]
+    }
+  }
+}

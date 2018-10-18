@@ -1,0 +1,59 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        "root": ["./src"]
+      }
+    }
+  },
+  "env": {
+      "es6": true,
+      "browser": true,
+      "jest": true
+  },
+  "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true,
+          "experimentalObjectRestSpread": true
+      }
+  },
+  "globals": {
+      "ReactDOM": false,
+      "React": false
+  },
+  "plugins": [ "react" ],
+  "rules": {
+      "jsx-a11y/href-no-hash": "off",
+      "jsx-a11y/anchor-is-valid": ["warn", {
+          "aspects": ["invalidHref"]
+      }],
+      "no-console": [2,
+          {
+              "allow": ["warn", "error"]
+          }
+      ],
+      "comma-dangle": ["error", "never"],
+      "semi": [2, "always"],
+      "no-extra-semi": 2,
+      "react/jsx-one-expression-per-line":"off",
+      "react/jsx-max-props-per-line": [2,
+          {
+              "maximum": 3
+          }
+      ],
+      "react/forbid-prop-types":[0],
+      "arrow-body-style": "off",
+      "no-underscore-dangle":"off",
+      "no-param-reassign": [2, { "props": false }],
+      "eol-last": ["error", "always"],
+      "react/jsx-no-literals": "off",
+      "import/no-dynamic-require": "off",
+      "global-require": "off",
+      "react/react-in-jsx-scope": "off",
+      "import/no-absolute-path": "off"
+  }
+}
