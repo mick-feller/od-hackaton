@@ -1,1 +1,1 @@
-export Sample from './Sample/Sample';
+export * from './Menu';

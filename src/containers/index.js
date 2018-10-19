@@ -1,1 +1,4 @@
-export HomeContainer from './Home/HomeContainer';
+
+export MainNavigationContainer from './MainNavigation/MainNavigationContainer';
+export FooterContainer from './Footer/FooterContainer';
+export HeaderContainer from './Header/HeaderContainer';

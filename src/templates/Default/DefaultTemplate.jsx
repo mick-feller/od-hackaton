@@ -1,9 +1,8 @@
 import React from 'react';
-import { HomeContainer } from 'containers';
 import './DefaultTemplate.scss';
 
 const DefaultTemplate = () => {
-  return <HomeContainer />;
+  return <div>Default Template</div>;
 };
 
 export default DefaultTemplate;
