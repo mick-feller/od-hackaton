@@ -1,4 +1,3 @@
-
 pipeline {
     agent {
         docker { image 'node:latest' }
@@ -7,11 +6,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10')) 
     }
     stages {
-        stage('Clone') {
-            steps {
-                checkout scm
-            }
-        }
         stage('Install') {
             steps {
                 sh 'npm install'

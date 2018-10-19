@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const HomeContainer = () => {
   return (
     <article>
-      <h1>Welcome To Office Depot</h1>
+      <h1>Welcome To Office Depot Hackaton</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mi odio,
       condimentum sit amet felis nec,aliquet laoreet orci.
       </p>
