@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import './Layout.scss';
 
 class Layout extends Component {
+  componentDidMount() {
+    return null;
+  }
+
   render() {
     const { route: { routes } = {} } = this.props;
     return (
