@@ -1,5 +1,5 @@
 import { Layout } from 'layouts';
-import { HomeTemplate, ListTemplate, DefaultTemplate, PageNotFoundTemplate } from 'templates';
+import { WelcomeTemplate, HomeTemplate, ListTemplate, DefaultTemplate, PageNotFoundTemplate } from 'templates';
 
 const routes = [
   {
@@ -9,6 +9,11 @@ const routes = [
         path: '/',
         exact: true,
         component: HomeTemplate
+      },
+      {
+        path: '/welcome',
+        exact: true,
+        component: WelcomeTemplate
       },
       {
         path: '/list',
