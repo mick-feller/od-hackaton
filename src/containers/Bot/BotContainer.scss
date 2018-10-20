@@ -1,0 +1,11 @@
+@import './../../sharedStyles/colors';
+.botContainer{
+    border:1px solid $grayLight;
+    &-chat-content{
+        background: $offWhite;
+    }
+    &-inputContainer{
+        border-top:1px solid $grayLight;
+        padding: 1rem;
+    }
+}

@@ -1,3 +1,11 @@
+@import './../../sharedStyles/spacer';
 .chat{
     display: flex;
+    font-weight: lighter;
+    & > div{
+        padding: $baseSpacer;
+    }
+    &-right{
+        flex-direction: row-reverse;
+    }
 }

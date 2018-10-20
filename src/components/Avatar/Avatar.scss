@@ -1,0 +1,22 @@
+@import './../../sharedStyles/colors';
+$size: 32px;
+.avatar{
+    position: relative;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    border: 1px solid $grayLight;
+    background: $primary;
+    &-small{
+        width: $size;
+        height: $size;
+    }
+    &-medium{
+        width: $size * 2;
+        height: $size * 2;
+    }
+    &-big{
+        width: $size * 3;
+        height: $size * 3;
+    }
+}

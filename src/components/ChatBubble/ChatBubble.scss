@@ -1,0 +1,9 @@
+@import './../../sharedStyles/colors';
+@import './../../sharedStyles/spacer';
+.chatBubble{
+    padding: $baseSpacer;
+    border: 1px solid $grayLight;
+    position: relative;
+    box-shadow: $shadow;
+    background: white;
+}

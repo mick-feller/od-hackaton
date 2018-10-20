@@ -1,7 +1,8 @@
 import React from 'react';
+import './ChatBubble.scss';
 
-const ChatBubble = ({content}) => {
-    return <div className="chatBubble">{content}</div>
+const ChatBubble = ({children}) => {
+    return <div className="chatBubble">{children}</div>
 }
 
 export default ChatBubble;

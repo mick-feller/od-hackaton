@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as botActionCreators from 'reducers/bot';
-import { Chat } from 'components';
+import { Chat, Input } from 'components';
+import './BotContainer.scss';
 
 class BotContainer extends Component{
     constructor(props){
@@ -29,29 +30,31 @@ class BotContainer extends Component{
         const { userval } = this.state;
         console.log(botIsThinking);
         return(
-            <div>
-                <div>
+            <div className="botContainer">
+                <div className="botContainer-chat-content">
                 {
                     conversation.map( (talk, i) => {
                         const { content, who } = talk;
-                        return <Chat key={i} content={content} avatar={'avatar'} />
+                        return <Chat key={i} align={(i%2) ? 'left' : 'right'} content={content} avatar={'avatar'} />
                     })
                 }
                 </div>
-                 { botIsThinking && <div>'sr Im thinking'</div> }
-                <div>user: 
-                    <input 
-                        onChange={ev => {
-                            this.setState({
-                                userval: ev.target.value
-                            })
-                        }} 
-                        onKeyPress={ev => {
-                            if(ev.key === 'Enter'){
-                                this.userTalk(userval);
+                <div> 
+                <div className="botContainer-inputContainer">
+                    <Input events={{
+                            onChange: (ev) => {
+                                this.setState({
+                                    userval: ev.target.value
+                                })
+                            },
+                            onKeyPress: (ev) => {
+                                if(ev.key === 'Enter'){
+                                    this.userTalk(userval);
+                                }
                             }
-                        }}
-                    value={userval}/>
+                        }
+                    } value={userval} valid={(userval)}/>
+                </div>
                 </div>
             </div>
         )

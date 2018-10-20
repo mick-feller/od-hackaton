@@ -15,16 +15,18 @@ const BotIsThinking = () => {
         type: BOT_IS_THINKING
     }
 }
-const AddToConversation = (talk) => {
+
+const BotFinishThinking = (talk) => {
     return {
-        type: ADD_TO_CONVERSATION,
+        type: BOT_IS_THINKING_FINISH,
         talk
     }
 }
 
-const BotFinishThinking = () => {
+const AddToConversation = (talk) => {
     return {
-        type: BOT_IS_THINKING_FINISH,
+        type: ADD_TO_CONVERSATION,
+        talk
     }
 }
 
@@ -43,11 +45,10 @@ export const userSpeaking = (say) => {
             question(say)
                 .then(response => {
                     const { anwser } = response;
-                    dispatch(BotFinishThinking())
-                    dispatch(AddToConversation({
-                        who: 'user',
+                    dispatch(BotFinishThinking({
+                        who: 'bot',
                         content: anwser
-                    }));
+                    }))
                 })
         }
     }
@@ -62,7 +63,7 @@ const initialState = {
     conversation: [
         {
             who: 'bot',
-            content: 'hello world'
+            content: 'Hi my name is Eli and I will be '
         }
     ] 
 };
@@ -77,12 +78,19 @@ const bot = (state=initialState, action) => {
         case 'BOT_IS_THINKING':
             return {
                 ...state,
-                botIsThinking: true
+                botIsThinking: true,
+                conversation: [...state.conversation, {
+                    who: 'bot',
+                    content: '...'
+                }]
             }
         case 'BOT_IS_THINKING_FINISH':
+            const { conversation } = state;
+                    conversation.pop();
             return {
                 ...state,
-                botIsThinking: false
+                botIsThinking: false,
+                conversation: [...conversation, action.talk]
             }
         case 'ADD_TO_CONVERSATION':
             return {

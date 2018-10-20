@@ -1,0 +1,11 @@
+@import './../../sharedStyles/spacer';
+@import './../../sharedStyles/colors';
+.input{
+    padding: $baseSpacer;
+    width: 100%;
+    border: 1px solid $grayLight;
+    outline: none;
+    &-valid{
+        border-color: $valid;
+    }
+}
