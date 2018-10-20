@@ -10,7 +10,7 @@ class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
+    // this.logout = this.logout.bind(this);
   }
 
   isAuth() {
