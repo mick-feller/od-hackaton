@@ -42,6 +42,19 @@ const formatAnswer = (answer) => {
         return `We found ${answer[0].name.toLowerCase()} in these places near you: Boca Raton, West Palm Beach or Boynton Beach. Which one would you like to go?`;
     case 'LOCATION':
         return `Okay we will notify the organisor and he will be in touch with you.`;
+    case 'PERSON':
+        if(answer[0].name.toLowerCase().includes('liz')) {
+          return 'Cool, great choice i will have her reach out to you!';
+        }
+        if(answer[0].name.toLowerCase().includes('babysitter')) {
+          return 'I think i can help with that, when do you need a babysitter?';
+        }
+        return `Okay what kind of mentor are you looking for?`;
+    case 'OTHER':
+        if(answer[0].name.toLowerCase().includes('tech')) {
+          return 'Alright, i found 3 people near you that could help you, who you you like to help you? Bob (Fixes Computers), Liz (Knows everything about programming) or Alice (Awesome Designer)';
+        }
+        return `Okay what kind of mentor are you looking for?`;
     default:
       return 'at this time i am not sure how to help you sorry, i am still learning';
   }

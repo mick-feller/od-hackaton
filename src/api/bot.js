@@ -60,7 +60,6 @@ export const question = (question) => {
 
       db.storeData(question, formattedResponse);
 
-
       resolve({
         answer: formattedResponse
       })
