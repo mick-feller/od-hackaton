@@ -28,6 +28,7 @@
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "chalk": "2.4.1",
     "chokidar": "^2.0.4",
+    "classnames": "^2.2.6",
     "copy-webpack-plugin": "^4.5.3",
     "core-js": "^2.5.7",
     "cross-env": "^5.2.0",
