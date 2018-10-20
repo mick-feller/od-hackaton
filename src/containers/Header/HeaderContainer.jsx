@@ -1,9 +1,10 @@
 import React from 'react';
-import { MainNavigationContainer } from 'containers';
+import { MainNavigationContainer, Logout } from 'containers';
 
 const HeaderContainer = () => {
     return(
         <header>
+            <Logout />
             <MainNavigationContainer />
         </header>
     )
