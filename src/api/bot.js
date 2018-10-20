@@ -14,13 +14,8 @@ class DBConnection {
     return this.dbCollection.where('userid', '==', email);
   }
 
-  storeInRedux(userData) {
-    console.log(userData);
-    /* @TODO: set in redux store */
-  }
-
-  storeData(question, answer) {
-    this.createQuery('mick.feller@gmail.com').get()
+  storeData(question, answer, email) {
+    this.createQuery(email).get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const db = firebase.firestore();
@@ -47,7 +42,7 @@ const processResponse = (response) => {
   });
 };
 
-export const question = (question) => {
+export const question = (question, { userid }) => {
   const db = new DBConnection();
   return new Promise((resolve) => {
     fetch(`https://us-central1-od-hackaton.cloudfunctions.net/ml?text=${question}`,{
@@ -58,7 +53,7 @@ export const question = (question) => {
     }).then((response) => {
       const formattedResponse = processResponse(response);
 
-      db.storeData(question, formattedResponse);
+      db.storeData(question, formattedResponse, userid);
 
       resolve({
         answer: formattedResponse

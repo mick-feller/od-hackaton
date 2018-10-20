@@ -31,6 +31,9 @@ const AddToConversation = (talk) => {
 }
 
 const formatAnswer = (answer) => {
+  if(!answer[0]) {
+    return 'at this time i am not sure how to help you sorry, i am still learning';
+  }
   switch(answer[0].type) {
     case 'EVENT':
       // Game!
@@ -63,7 +66,7 @@ const formatAnswer = (answer) => {
 
 export const userSpeaking = (say) => {
     return(dispatch, getState) => {
-        const { bot: { botIsThinking } } = getState();
+        const { bot: { botIsThinking }, user } = getState();
         if( !botIsThinking ){
             
             dispatch(UserSpeaking());
@@ -73,7 +76,7 @@ export const userSpeaking = (say) => {
             }));
             // 
             dispatch(BotIsThinking());
-            question(say)
+            question(say, user)
                 .then(response => {
                     const { answer } = response;
                     const botAnswer = formatAnswer(answer);
