@@ -30,6 +30,24 @@ const AddToConversation = (talk) => {
     }
 }
 
+const formatAnswer = (answer) => {
+  console.log('ANSWER::: ', answer);
+  switch(answer[0].type) {
+    case 'EVENT':
+      // Game!
+      if(answer[0].name.toLowerCase().includes('game')) {
+        return 'What kind of games are you into?';
+      }
+      return 'I have no clue what you are talking about right now.';
+    case 'CONSUMER_GOOD':
+        return `We found ${answer[0].name.toLowerCase()} in these places near you: Boca Raton, West Palm Beach or Boynton Beach. Which one would you like to go?`;
+    case 'LOCATION':
+        return `Okay we will notify the organisor and he will be in touch with you.`;
+    default:
+      return 'at this time i am not sure how to help you sorry, i am still learning';
+  }
+}
+
 export const userSpeaking = (say) => {
     return(dispatch, getState) => {
         const { bot: { botIsThinking } } = getState();
@@ -44,10 +62,12 @@ export const userSpeaking = (say) => {
             dispatch(BotIsThinking());
             question(say)
                 .then(response => {
-                    const { anwser } = response;
+                    const { answer } = response;
+                    const botAnswer = formatAnswer(answer);
+
                     dispatch(BotFinishThinking({
                         who: 'bot',
-                        content: anwser
+                        content: botAnswer
                     }))
                 })
         }

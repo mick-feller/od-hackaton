@@ -14,7 +14,7 @@ class Layout extends React.Component {
   isAuth() {
     const { auth: { isAuth = false }, history } = this.props;
     if (!isAuth) {
-      history.push('/welcome');
+     // history.push('/welcome');
     }
   }
 

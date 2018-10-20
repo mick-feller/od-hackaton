@@ -1,5 +1,5 @@
 import { Layout } from 'layouts';
-import { WelcomeTemplate, HomeTemplate, ListTemplate, DefaultTemplate, PageNotFoundTemplate } from 'templates';
+import { WelcomeTemplate, HomeTemplate, ListTemplate, DefaultTemplate, PageNotFoundTemplate, FeedListTemplate, FeedTemplate } from 'templates';
 
 const routes = [
   {
