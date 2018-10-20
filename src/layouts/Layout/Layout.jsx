@@ -53,12 +53,18 @@ class Layout extends React.Component {
       props,
     } = this;
 
-    const { route: { routes } = {} } = props;
+    const { route: { routes } = {}, auth: { isAuth = false } } = props;
     return (
       <div>
-        <HeaderContainer />
+        {isAuth ? 
+          <HeaderContainer />
+        : null}
+        
         { renderRoutes(routes) }
-        <FooterContainer />
+
+        {isAuth ?
+          <FooterContainer />
+        : null}
       </div>
     )
   }
