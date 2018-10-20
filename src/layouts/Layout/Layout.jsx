@@ -38,11 +38,12 @@ class Layout extends React.Component {
       props,
     } = this;
 
-    const { route: { routes } = {}, auth: { isAuth = false } } = props;
+    const { route: { routes } = {}, auth: { isAuth } } = props;
+    console.log(isAuth)
     return (
       <Fragment>
         { renderRoutes(routes) }
-      { isAuth ? <LogoutContainer {...props} /> : <LoginContainer /> }
+        { isAuth === true ? <LogoutContainer {...props} /> : isAuth !== null ? <LoginContainer /> : null }
       </Fragment>
     )
   }

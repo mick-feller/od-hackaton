@@ -14,7 +14,7 @@ export const updateAuth = (val) => {
 }
 
 const initialState = {
-    isAuth: false
+    isAuth: null
 }
 
 const auth = (state=initialState, action) => {
