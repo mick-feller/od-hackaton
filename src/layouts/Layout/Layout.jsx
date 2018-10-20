@@ -15,7 +15,7 @@ class Layout extends React.Component {
     const { history, updateUser } = this.props;
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        history.push('/welcome');
+        history.push('/signin');
       }else{
         updateUser({
           userid: user.email,
@@ -47,7 +47,7 @@ class Layout extends React.Component {
     return (
       <Fragment>
         { renderRoutes(routes) }
-        { isAuth === true ? <LogoutContainer {...props} /> : isAuth !== null ? <LoginContainer /> : null }
+        { isAuth === true ? <LogoutContainer /> : isAuth !== null ? <LoginContainer /> : null }
       </Fragment>
     )
   }

@@ -2,11 +2,25 @@ import { AuthAction } from './auth';
 import { SetRedirect } from './navigation';
 
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+const RESET_USER_INFO = 'RESET_USER_INFO';
 
 const UpdateUserInfo = (info) => {
     return {
         type: UPDATE_USER_INFO,
         info
+    }
+}
+
+const ResetUserInfo = (info) => {
+    return {
+        type: RESET_USER_INFO
+    }
+}
+
+export const resetUser = () => {
+    return (dispatch) => {
+        dispatch(AuthAction(false));
+        dispatch(ResetUserInfo(true));
     }
 }
 
@@ -24,7 +38,7 @@ const initialState = {
     userid: '',
     displayName: '',
     isnew: '',
-    photoURL: 'https://media.makeameme.org/created/proud-face.jpg',
+    photoURL: '',
     phoneNumber: ''
 }
 
@@ -34,8 +48,12 @@ const user = (state=initialState, action) => {
         return {
             ...action.info
         }
-        default:
-            return state;
+    case RESET_USER_INFO:
+        return {
+            ...initialState
+        }
+    default:
+        return state;
     }
 }
 

@@ -1,5 +1,5 @@
 import { Layout } from 'layouts';
-import { WelcomeTemplate, HomeTemplate, ListTemplate, DefaultTemplate, PageNotFoundTemplate, ScheduleTemplate } from 'templates';
+import { SignInTemplate, HomeTemplate, ListTemplate, DefaultTemplate, PageNotFoundTemplate, ScheduleTemplate } from 'templates';
 
 const routes = [
   {
@@ -11,9 +11,9 @@ const routes = [
         component: HomeTemplate
       },
       {
-        path: '/welcome',
+        path: '/signin',
         exact: true,
-        component: WelcomeTemplate
+        component: SignInTemplate
       },
       {
         path: '/list',

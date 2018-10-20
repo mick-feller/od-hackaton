@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userActionCreators from 'reducers/user';
 import firebase, { auth, provider } from 'firebase/firebase';
+import { Button } from 'components';
 import './Login.scss';
 
-class Logout extends React.Component {
+class Logout extends Component {
   constructor(props) {
     super(props);
     
@@ -68,9 +69,16 @@ class Logout extends React.Component {
   render() {
     return (
       <div>
-        <button type="button" onClick={this.login}>
+        <Button type="button" events={
+          {
+            onClick:(e) => {
+              e.preventDefault();
+              this.login()
+            }
+          }
+        }>
           Login
-        </button>
+        </Button>
       </div>
     )
   }

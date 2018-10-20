@@ -1,5 +1,6 @@
 import React from 'react';
 import { BotContainer } from 'containers';
+import './HomeTemplate.scss';
 
 const HomeTemplate = () => {
     return (

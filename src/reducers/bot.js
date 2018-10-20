@@ -60,7 +60,7 @@ const formatAnswer = (answer) => {
         }
         return { answer: `Okay what kind of mentor are you looking for?`, redirect: false };
     default:
-      return { answer: 'at this time i am not sure how to help you sorry, i am still learning', redirect: false };
+      return { answer: 'At this time i am not sure how to help you sorry, i am still learning', redirect: false };
   }
 }
 

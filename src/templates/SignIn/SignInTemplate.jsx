@@ -1,13 +1,13 @@
 import React from 'react';
 import { LoginContainer } from 'containers';
-import './WelcomeTemplate.scss';
+import './SignInTemplate.scss';
 
-const WelcomeTemplate = () => {
+const SignInTemplate = () => {
     return (
-        <div className="welcomeTemplate">
+        <div className="SignInTemplate">
             <LoginContainer />
         </div>
     )
 }
   
-export default WelcomeTemplate
+export default SignInTemplate
