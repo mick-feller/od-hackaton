@@ -1,9 +1,10 @@
 import React from 'react';
+import { BotContainer } from 'containers';
 
 const HomeTemplate = () => {
     return (
         <div className="home-template">
-            Home Page Template
+            <BotContainer />
         </div>
     )
 }

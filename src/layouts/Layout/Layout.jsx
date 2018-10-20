@@ -1,30 +1,36 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as userActionCreators from 'reducers/user';
 import { renderRoutes } from 'react-router-config';
-import PropTypes from 'prop-types';
-import firebase, { auth, provider } from 'firebase/firebase';
-import { HeaderContainer, FooterContainer } from 'containers';
+import { auth } from 'firebase/firebase';
+import { LoginContainer, LogoutContainer} from 'containers';
 import './Layout.scss';
 
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  isAuth() {
-    const { auth: { isAuth = false }, history } = this.props;
-    if (!isAuth) {
-     // history.push('/welcome');
-    }
-  }
-
-  componentDidMount() {
-    this.isAuth();
+    const { history, updateUser } = this.props;
     auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ user });
+      if (!user) {
+        history.push('/welcome');
+      }else{
+        updateUser({
+          userid: user.email,
+          displayName: user.displayName,
+          isnew: true,
+          photoURL: user.photoURL,
+          phoneNumber: user.phoneNumber
+        });
       }
     });
+  }
+  componentDidUpdate(prevProps){
+    const { location, history, auth: {isAuth}} = this.props;
+    const { location: prevLocation } = prevProps;
+    if(isAuth && prevLocation.pathname === prevLocation.pathname && location.pathname !== "/"){
+      history.push('/');
+    }
   }
 
   render() {
@@ -35,56 +41,12 @@ class Layout extends React.Component {
     const { route: { routes } = {}, auth: { isAuth = false } } = props;
     return (
       <Fragment>
-        {isAuth ? 
-          <HeaderContainer />
-        : null}
-        
         { renderRoutes(routes) }
-
-        {isAuth ?
-          <FooterContainer />
-        : null}
+      { isAuth ? <LogoutContainer {...props} /> : <LoginContainer /> }
       </Fragment>
     )
   }
 }
-
-//   render() {
-//     const { user } = this.state;
-//     const { route: { routes } = {} } = this.props;
-//     return (
-//       <div className="container">
-//         <header>
-//           <nav>
-//             {user
-//               ? (
-//                 <div>
-//                   <div className="user-profile">
-//                     <img src={this.state.user.photoURL} alt={this.state.user.displayName} />
-//                   </div>
-//                   <button onClick={this.logout} type="button">Log Out</button>
-//                 </div>
-//               )
-//               : <button onClick={this.login} type="button">Log In</button>
-//             }
-//           </nav>
-//         </header>
-//         { renderRoutes(routes) }
-//         <footer>
-//           footer
-//         </footer>
-//       </div>
-//     );
-//   }
-// }
-
-// Layout.propTypes = {
-//   route: PropTypes.object
-// };
-
-// Layout.defaultProps = {
-//   route: undefined
-// };
 
 const mapStateToProps = ({auth}) => {
   return {
@@ -92,4 +54,8 @@ const mapStateToProps = ({auth}) => {
   };
 };
 
-export default connect(mapStateToProps)(Layout);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(userActionCreators, dispatch)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

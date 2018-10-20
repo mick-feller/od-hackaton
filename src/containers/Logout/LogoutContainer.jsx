@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { auth } from 'firebase/firebase';
 import './Logout.scss';
 
-class Logout extends React.Component {
+class LogoutContainer extends React.Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
@@ -29,10 +29,4 @@ class Logout extends React.Component {
   }
 }
 
-const mapStateToProps = ({auth}) => {
-  return {
-    auth
-  };
-};
-
-export default connect(mapStateToProps)(Logout);
+export default connect()(LogoutContainer);
