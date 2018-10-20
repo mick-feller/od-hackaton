@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as userActionCreators from 'reducers/user';
 import firebase, { auth, provider } from 'firebase/firebase';
 import './Login.scss';
 
@@ -21,8 +23,8 @@ class Logout extends React.Component {
   }
 
   storeInRedux(userData) {
-    console.log(userData);
-    /* @TODO: set in redux store */
+    const { updateUser } = this.props;
+    updateUser(userData);
   }
 
   getUserData(querySnapshot) {
@@ -80,4 +82,8 @@ const mapStateToProps = ({auth}) => {
   };
 };
 
-export default connect(mapStateToProps)(Logout);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(userActionCreators, dispatch)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Logout);

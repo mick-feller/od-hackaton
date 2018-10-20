@@ -71,6 +71,6 @@ const mapStateToProps = ({bot, user}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(botActionCreators, dispatch)
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(BotContainer);

@@ -1,3 +1,21 @@
+import { AuthAction } from './auth';
+const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+
+const UpdateUserInfo = (info) => {
+    return {
+        type: UPDATE_USER_INFO,
+        info
+    }
+}
+
+export const updateUser = (info) => {
+    return (dispatch) => {
+        dispatch(UpdateUserInfo(info));
+        dispatch(AuthAction(true));
+    }
+}
+
+
 const initialState = {
     isAuth: false,
     userid: '',
@@ -9,6 +27,10 @@ const initialState = {
 
 const user = (state=initialState, action) => {
     switch(action.type){
+    case UPDATE_USER_INFO:
+        return {
+            ...action.info
+        }
         default:
             return state;
     }
