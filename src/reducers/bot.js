@@ -31,7 +31,6 @@ const AddToConversation = (talk) => {
 }
 
 const formatAnswer = (answer) => {
-  console.log('ANSWER::: ', answer);
   switch(answer[0].type) {
     case 'EVENT':
       // Game!
