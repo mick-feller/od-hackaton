@@ -9,8 +9,6 @@ import './Layout.scss';
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-    this.login = this.login.bind(this);
-    // this.logout = this.logout.bind(this);
   }
 
   isAuth() {
@@ -27,16 +25,6 @@ class Layout extends React.Component {
         this.setState({ user });
       }
     });
-  }
-
-  login() {
-    auth.signInWithPopup(provider)
-      .then((result) => {
-        const { user } = result;
-        this.setState({
-          user
-        });
-      });
   }
 
   render() {

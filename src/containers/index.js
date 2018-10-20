@@ -4,3 +4,4 @@ export FooterContainer from './Footer/FooterContainer';
 export HeaderContainer from './Header/HeaderContainer';
 export BotContainer from './Bot/BotContainer';
 export Logout from './Logout/LogoutContainer';
+export Login from './Login/LoginContainer';
