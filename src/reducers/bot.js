@@ -41,6 +41,7 @@ const formatAnswer = (answer) => {
     case 'CONSUMER_GOOD':
         return `We found ${answer[0].name.toLowerCase()} in these places near you: Boca Raton, West Palm Beach or Boynton Beach. Which one would you like to go?`;
     case 'LOCATION':
+
         return `Okay we will notify the organisor and he will be in touch with you.`;
     case 'PERSON':
         if(answer[0].name.toLowerCase().includes('liz')) {
@@ -95,7 +96,7 @@ const initialState = {
     conversation: [
         {
             who: 'bot',
-            content: 'Hi my name is Eli and I will be helping you to connect in our community, can i know a bit more about you?'
+            content: 'Hi my name is Eli and I will be helping you to connect in our community, what is that you are looking for?'
         }
     ] 
 };
