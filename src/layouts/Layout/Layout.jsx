@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import PropTypes from 'prop-types';
@@ -34,7 +34,7 @@ class Layout extends React.Component {
 
     const { route: { routes } = {}, auth: { isAuth = false } } = props;
     return (
-      <div>
+      <Fragment>
         {isAuth ? 
           <HeaderContainer />
         : null}
@@ -44,7 +44,7 @@ class Layout extends React.Component {
         {isAuth ?
           <FooterContainer />
         : null}
-      </div>
+      </Fragment>
     )
   }
 }

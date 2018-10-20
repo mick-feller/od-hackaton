@@ -3,7 +3,7 @@ const initialState = {
     userid: '',
     displayName: '',
     isnew: '',
-    photoURL: '',
+    photoURL: 'https://media.makeameme.org/created/proud-face.jpg',
     phoneNumber: ''
 }
 
@@ -14,4 +14,4 @@ const user = (state=initialState, action) => {
     }
 }
 
-export default auth;
+export default user;

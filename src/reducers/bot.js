@@ -56,14 +56,14 @@ export const userSpeaking = (say) => {
 
 const initialState = {
     botIsThinking: false,
-    bot: {
+    info: {
         name: "Eli",
-        avatar: 'https://pbs.twimg.com/profile_images/948693100108697601/yaaaaWmE_400x400.jpg'
+        photoURL: 'https://pbs.twimg.com/profile_images/948693100108697601/yaaaaWmE_400x400.jpg'
     },
     conversation: [
         {
             who: 'bot',
-            content: 'Hi my name is Eli and I will be '
+            content: 'Hi my name is Eli and I will be helping you to connect in our community, can i know a bit more about you?'
         }
     ] 
 };

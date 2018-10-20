@@ -1,11 +1,23 @@
 @import './../../sharedStyles/colors';
+@import './../../sharedStyles/spacer';
 .botContainer{
     border:1px solid $grayLight;
+    background: $white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     &-chat-content{
         background: $offWhite;
+        overflow: auto;
+        height: 100%;
+        padding: $baseSpacer;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
     &-inputContainer{
         border-top:1px solid $grayLight;
         padding: 1rem;
+        margin-top: auto;
     }
 }

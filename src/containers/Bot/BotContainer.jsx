@@ -26,20 +26,19 @@ class BotContainer extends Component{
 
     }
     render(){
-        const { botIsThinking, conversation } = this.props;
+        const { botProfile, userProfile, botIsThinking, conversation } = this.props;
         const { userval } = this.state;
-        console.log(botIsThinking);
         return(
             <div className="botContainer">
                 <div className="botContainer-chat-content">
                 {
                     conversation.map( (talk, i) => {
                         const { content, who } = talk;
-                        return <Chat key={i} align={(i%2) ? 'left' : 'right'} content={content} avatar={'avatar'} />
+                        const { photoURL } = who === 'bot' ? botProfile : userProfile;
+                        return <Chat key={i} align={(i%2) ? 'left' : 'right'} content={content} photoURL={photoURL} />
                     })
                 }
-                </div>
-                <div> 
+                </div> 
                 <div className="botContainer-inputContainer">
                     <Input events={{
                             onChange: (ev) => {
@@ -55,17 +54,16 @@ class BotContainer extends Component{
                         }
                     } value={userval} valid={(userval)}/>
                 </div>
-                </div>
             </div>
         )
     }
 }
 
 const mapStateToProps = ({bot, user}) => {
-    console.log(bot)
-    const { botIsThinking, conversation } = bot;
+    const { info: botProfile, botIsThinking, conversation } = bot;
     return {
-        user,
+        botProfile,
+        userProfile: user,
         botIsThinking,
         conversation
     }

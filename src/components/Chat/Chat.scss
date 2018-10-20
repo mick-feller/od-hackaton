@@ -3,7 +3,7 @@
     display: flex;
     font-weight: lighter;
     & > div{
-        padding: $baseSpacer;
+        padding: $baseSpacer / 2;
     }
     &-right{
         flex-direction: row-reverse;
