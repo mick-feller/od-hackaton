@@ -29,15 +29,6 @@ class Layout extends React.Component {
     });
   }
 
-  logout() {
-    auth.signOut()
-      .then(() => {
-        this.setState({
-          user: null
-        });
-      });
-  }
-
   login() {
     auth.signInWithPopup(provider)
       .then((result) => {
