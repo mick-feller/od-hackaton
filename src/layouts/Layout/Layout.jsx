@@ -6,54 +6,63 @@ import firebase, { auth, provider } from 'firebase/firebase';
 import { HeaderContainer, FooterContainer } from 'containers';
 import './Layout.scss';
 
-const Layout = (props) => {
-  const { route: { routes } = {} } = props;
-  return (
-    <div>
-      <HeaderContainer />
-      { renderRoutes(routes) }
-      <FooterContainer />
-    </div>
-  )
+class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+  isAuth() {
+    const { auth: { isAuth = false }, history } = this.props;
+    if (!isAuth) {
+      history.push('/welcome');
+    }
+  }
+
+  componentDidMount() {
+    this.isAuth();
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
+  }
+
+  logout() {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        });
+      });
+  }
+
+  login() {
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        const { user } = result;
+        this.setState({
+          user
+        });
+      });
+  }
+
+  render() {
+    const {
+      props,
+    } = this;
+
+    const { route: { routes } = {} } = props;
+    return (
+      <div>
+        <HeaderContainer />
+        { renderRoutes(routes) }
+        <FooterContainer />
+      </div>
+    )
+  }
 }
-
-// class Layout extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       user: null
-//     };
-
-//     this.login = this.login.bind(this);
-//     this.logout = this.logout.bind(this);
-//   }
-
-//   componentDidMount() {
-//     auth.onAuthStateChanged((user) => {
-//       if (user) {
-//         this.setState({ user });
-//       }
-//     });
-//   }
-
-//   logout() {
-//     auth.signOut()
-//       .then(() => {
-//         this.setState({
-//           user: null
-//         });
-//       });
-//   }
-
-//   login() {
-//     auth.signInWithPopup(provider)
-//       .then((result) => {
-//         const { user } = result;
-//         this.setState({
-//           user
-//         });
-//       });
-//   }
 
 //   render() {
 //     const { user } = this.state;

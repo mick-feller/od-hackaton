@@ -1,4 +1,8 @@
-import firebase from 'firebase';
+import { reduxFirestore, firestoreReducer } from 'redux-firestore'
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/firestore';
 
 const config = {
   apiKey: process.env.API_KEY,
