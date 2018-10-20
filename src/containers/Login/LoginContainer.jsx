@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { auth } from 'firebase/auth';
+import firebase, { auth, provider } from 'firebase/firebase';
 import './Login.scss';
 
 class Logout extends React.Component {
