@@ -20,13 +20,13 @@ class BotContainer extends Component{
         this.setState({
             userval: ''
         })
-        userSpeaking(talk);
+        console.log('USER SPEAKING: ', userSpeaking(talk));
     }
     botTalk(talk){
 
     }
     render(){
-        const { botProfile, userProfile, botIsThinking, conversation } = this.props;
+        const { botProfile, userProfile, botIsThinking, conversation, doRedirect } = this.props;
         const { userval } = this.state;
         return(
             <div className="botContainer">

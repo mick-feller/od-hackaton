@@ -1,4 +1,6 @@
 import { AuthAction } from './auth';
+import { SetRedirect } from './navigation';
+
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 
 const UpdateUserInfo = (info) => {
@@ -12,6 +14,7 @@ export const updateUser = (info) => {
     return (dispatch) => {
         dispatch(UpdateUserInfo(info));
         dispatch(AuthAction(true));
+        dispatch(SetRedirect('/'));
     }
 }
 

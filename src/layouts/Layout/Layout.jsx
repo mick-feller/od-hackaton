@@ -2,10 +2,12 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userActionCreators from 'reducers/user';
+import * as navigationActionCreators from 'reducers/navigation';
 import { renderRoutes } from 'react-router-config';
 import { auth } from 'firebase/firebase';
 import { LoginContainer, LogoutContainer} from 'containers';
 import './Layout.scss';
+import {doResetRedirect} from '../../reducers/navigation';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -26,10 +28,12 @@ class Layout extends React.Component {
     });
   }
   componentDidUpdate(prevProps){
-    const { location, history, auth: {isAuth}} = this.props;
+    const { location, history, auth: {isAuth}, navigation, doResetRedirect} = this.props;
     const { location: prevLocation } = prevProps;
-    if(isAuth && prevLocation.pathname === prevLocation.pathname && location.pathname !== "/"){
-      history.push('/');
+
+    if(navigation.redirect && navigation.url !== '') {
+      history.push(navigation.url);
+      doResetRedirect();
     }
   }
 
@@ -49,14 +53,15 @@ class Layout extends React.Component {
   }
 }
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({auth, navigation}) => {
   return {
-    auth
+    auth,
+    navigation
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(userActionCreators, dispatch)
+  return bindActionCreators({ ...userActionCreators, ...navigationActionCreators }, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);
