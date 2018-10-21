@@ -61,8 +61,8 @@ const formatAnswer = (answer) => {
     case 'LOCATION':
         return { answer: `Okay we will notify the organisor and he will be in touch with you.`, redirect: true };
     case 'PERSON':
-        if(answer[0].name.toLowerCase().includes('liz')) {
-          return { answer: 'Cool, great choice i will have her reach out to you!', redirect: true };
+        if(answer[0].name.toLowerCase().includes('tom') || answer[0].name.toLowerCase().includes('thomas')) {
+          return { answer: 'oh cool I will let Thomas know that you would like his help!', redirect: false };
         }
         if(answer[0].name.toLowerCase().includes('babysitter')) {
           return { answer: 'I think i can help with that, when do you need a babysitter?', redirect: false };
@@ -70,20 +70,20 @@ const formatAnswer = (answer) => {
         return { answer: `Okay what kind of mentor are you looking for?`, redirect: false };
     case 'OTHER':
         if(answer[0].name.toLowerCase().includes('tech')) {
-          return { answer: 'Alright, i found 3 people near you that could help you, who you you like to help you? Bob (Fixes Computers), Liz (Knows everything about programming) or Alice (Awesome Designer)', redirect: false,
+          return { answer: 'Alright, i found 3 people near you that could help you, who you you like to help you? Tom (Fixes Computers), Col (Knows everything about programming) or Alice (Awesome Designer)', redirect: false,
                 options: [
                     {
-                        name: 'Bob',
+                        name: 'Thomas Lewis',
                         photoURL: bobImg,
                         type: 'person'
                     },
                     {
-                        name: 'Liz',
+                        name: 'Colleen Smith',
                         photoURL: lizImg,
                         type: 'person'
                     },
                     {
-                        name: 'Alice',
+                        name: 'Alicia Alonso',
                         photoURL: aliceImg,
                         type: 'person'
                     }
