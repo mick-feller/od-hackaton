@@ -3,7 +3,6 @@ import cx from 'classnames';
 import './Avatar.scss';
 
 const Avatar = ({photoURL, size}) => {
-    console.log(photoURL);
     return <div className={cx('avatar', {
         'avatar-small': size === 'small',
         'avatar-medium': size === 'medium',

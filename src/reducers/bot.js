@@ -1,16 +1,30 @@
-import { question, redirect } from 'api/bot';
+import { question } from 'api/bot';
 import { doRedirect } from "./navigation";
+import { RESET_USER_INFO } from './user';
+import elitImg from 'assets/images/elit.jpg';
+import bobImg from 'assets/images/elit.jpg';
+import lizImg from 'assets/images/liz.jpg';
+import aliceImg from 'assets/images/alice.jpg';
 
+
+const START_BOT = 'START_BOT';
 const USER_SPEAKIG = 'USER_SPEAKIG';
 const BOT_IS_THINKING = 'BOT_IS_THINKING';
 const BOT_IS_THINKING_FINISH = 'BOT_IS_THINKING_FINISH';
 const ADD_TO_CONVERSATION = 'ADD_TO_CONVERSATION';
+
+const Init = () => {
+    return {
+        type: START_BOT
+    }
+}
 
 const UserSpeaking = () => {
     return {
         type: USER_SPEAKIG,
     }
 }
+
 const BotIsThinking = () => {
     return {
         type: BOT_IS_THINKING
@@ -33,7 +47,7 @@ const AddToConversation = (talk) => {
 
 const formatAnswer = (answer) => {
   if(!answer[0]) {
-    return { answer: 'at this time i am not sure how to help you sorry, i am still learning', redirect: false };
+    return { answer: 'At this time i am not sure how to help you sorry, i am still learning', redirect: false };
   }
   switch(answer[0].type) {
     case 'EVENT':
@@ -56,7 +70,25 @@ const formatAnswer = (answer) => {
         return { answer: `Okay what kind of mentor are you looking for?`, redirect: false };
     case 'OTHER':
         if(answer[0].name.toLowerCase().includes('tech')) {
-          return { answer: 'Alright, i found 3 people near you that could help you, who you you like to help you? Bob (Fixes Computers), Liz (Knows everything about programming) or Alice (Awesome Designer)', redirect: false };
+          return { answer: 'Alright, i found 3 people near you that could help you, who you you like to help you? Bob (Fixes Computers), Liz (Knows everything about programming) or Alice (Awesome Designer)', redirect: false,
+                options: [
+                    {
+                        name: 'Bob',
+                        photoURL: bobImg,
+                        type: 'person'
+                    },
+                    {
+                        name: 'Liz',
+                        photoURL: lizImg,
+                        type: 'person'
+                    },
+                    {
+                        name: 'Alice',
+                        photoURL: aliceImg,
+                        type: 'person'
+                    }
+                ]
+            };
         }
         return { answer: `Okay what kind of mentor are you looking for?`, redirect: false };
     default:
@@ -64,12 +96,22 @@ const formatAnswer = (answer) => {
   }
 }
 
+export const initBot = () => {
+    return (dispatch) => {
+        dispatch(Init())
+    }
+}
+
+const answerModel = {
+    who: '',
+    content: '',
+    options: []
+}
+
 export const userSpeaking = (say) => {
     return(dispatch, getState) => {
-      console.log(getState());
         const { bot: { botIsThinking }, user, history } = getState();
         if( !botIsThinking ){
-            
             dispatch(UserSpeaking());
             dispatch(AddToConversation({
                 who: 'user',
@@ -80,13 +122,15 @@ export const userSpeaking = (say) => {
             question(say, user)
                 .then(response => {
                     const { answer } = response;
+                    console.log(answer)
                     const botAnswer = formatAnswer(answer);
-
+                    console.log(botAnswer);
                     dispatch(BotFinishThinking({
+                        ...answerModel,
                         who: 'bot',
-                        content: botAnswer.answer
+                        content: botAnswer.answer,
+                        options: botAnswer.options || []
                     }))
-
                     if(botAnswer.redirect) {
                       //setTimeout(() => {
                         dispatch(doRedirect('/schedule'));
@@ -101,24 +145,29 @@ const initialState = {
     botIsThinking: false,
     info: {
         name: "Eli",
-        photoURL: 'https://pbs.twimg.com/profile_images/948693100108697601/yaaaaWmE_400x400.jpg'
+        photoURL: elitImg
     },
-    conversation: [
-        {
-            who: 'bot',
-            content: 'Hi my name is Eli and I will be helping you to connect in our community, what is that you are looking for?'
-        }
-    ] 
+    conversation: [] 
 };
 
 const bot = (state=initialState, action) => {
     switch(action.type){
-        case 'USER_SPEAKIG':
+        case RESET_USER_INFO:
+            return {...initialState}
+        case START_BOT:
+            return {
+                ...state,
+                conversation: [{
+                    who: 'bot',
+                    content: 'Hi my name is Eli and I will be helping you to connect in our community, what is that you are looking for?'
+                }]
+            }
+        case USER_SPEAKIG:
             return {
                 ...state,
                 botIsThinking: false
             }
-        case 'BOT_IS_THINKING':
+        case BOT_IS_THINKING:
             return {
                 ...state,
                 botIsThinking: true,
@@ -127,7 +176,7 @@ const bot = (state=initialState, action) => {
                     content: '...'
                 }]
             }
-        case 'BOT_IS_THINKING_FINISH':
+        case BOT_IS_THINKING_FINISH:
             const { conversation } = state;
                     conversation.pop();
             return {
@@ -135,7 +184,7 @@ const bot = (state=initialState, action) => {
                 botIsThinking: false,
                 conversation: [...conversation, action.talk]
             }
-        case 'ADD_TO_CONVERSATION':
+        case ADD_TO_CONVERSATION:
             return {
                 ...state,
                 conversation: [...state.conversation, action.talk]

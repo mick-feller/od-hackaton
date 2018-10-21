@@ -2,7 +2,7 @@ import { AuthAction } from './auth';
 import { SetRedirect } from './navigation';
 
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
-const RESET_USER_INFO = 'RESET_USER_INFO';
+export const RESET_USER_INFO = 'RESET_USER_INFO';
 
 const UpdateUserInfo = (info) => {
     return {

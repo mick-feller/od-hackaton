@@ -1,0 +1,15 @@
+@import './../../sharedStyles/colors';
+@import './../../sharedStyles/spacer';
+.profile{
+    background:$white;
+    border-radius: 42px;
+    padding: 5px;
+    width: 100%;
+    color: $primary;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    &-avatar-container{
+        margin-right: 1rem;
+    }
+}

@@ -1,9 +1,13 @@
 @import './../../sharedStyles/colors';
 @import './../../sharedStyles/spacer';
+@import './../../sharedStyles/vars';
 .chatBubble{
     padding: $baseSpacer;
     border: 1px solid $grayLight;
     position: relative;
     box-shadow: $shadow;
     background: white;
+    transition: all 500ms ease-in-out;
+    max-width:300px;
+    border-radius: $borderRadius;
 }

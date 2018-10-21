@@ -32,5 +32,23 @@
     color: $primary;
     background: white;
     border-radius: $borderRadius;
+    text-transform: uppercase;
+    &.primary{
+        background-color: $primary;
+        color: white;
+        &:hover{
+            background-color: $primaryHover;
+        }
+    }
+    &.secundary{
+        background-color: $secundary;
+        color: white;
+        &:hover{
+            background-color: $secundaryHover;
+        }
+    }
+    &:hover{
+        cursor: pointer;
+    }
 }
 

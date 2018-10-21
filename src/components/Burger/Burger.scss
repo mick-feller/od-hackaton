@@ -1,0 +1,20 @@
+.burger{
+    cursor: pointer;
+    & > div{
+        width: 20px;
+        height: 2px;
+        background: black;
+        margin-bottom: 4px;
+        transition: .25s ease-in-out;
+    }
+    &.active{
+        & > div{
+            &:first-child{
+                width: 10px;
+            }
+            &:nth-child(2){
+                width: 15px; 
+            }
+        }
+    }
+}

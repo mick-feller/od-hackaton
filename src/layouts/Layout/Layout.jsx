@@ -7,7 +7,6 @@ import { renderRoutes } from 'react-router-config';
 import { auth } from 'firebase/firebase';
 import { LoginContainer, LogoutContainer} from 'containers';
 import './Layout.scss';
-import {doResetRedirect} from '../../reducers/navigation';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -28,8 +27,7 @@ class Layout extends React.Component {
     });
   }
   componentDidUpdate(prevProps){
-    const { location, history, auth: {isAuth}, navigation, doResetRedirect} = this.props;
-    const { location: prevLocation } = prevProps;
+    const { history, navigation, doResetRedirect} = this.props;
 
     if(navigation.redirect && navigation.url !== '') {
       history.push(navigation.url);
@@ -43,7 +41,6 @@ class Layout extends React.Component {
     } = this;
 
     const { route: { routes } = {}, auth: { isAuth } } = props;
-    console.log(isAuth)
     return (
       <Fragment>
         { renderRoutes(routes) }

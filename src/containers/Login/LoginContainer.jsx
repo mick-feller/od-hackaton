@@ -68,8 +68,7 @@ class Logout extends Component {
 
   render() {
     return (
-      <div>
-        <Button type="button" events={
+        <Button type="button" ctaType="primary" events={
           {
             onClick:(e) => {
               e.preventDefault();
@@ -77,9 +76,8 @@ class Logout extends Component {
             }
           }
         }>
-          Login
+          Sign-up Width Google
         </Button>
-      </div>
     )
   }
 }

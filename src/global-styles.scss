@@ -20,8 +20,23 @@
     height: 100%;
     box-sizing: border-box;
   }
-  h1,h2,h3,h4,h5,h6{
+  h1,h2{
+    font-weight: lighter;
+  }
+  h3,h4,h5,h6{
     font-weight: bold;
+  }
+
+  h1,h2,h3,h4,h5,h6{
+    font-weight: lighter;
+    line-height: 1.5em;
+  }
+  hr{
+    border : 0;
+    margin : .5rem 0;
+    height: 1px;
+    background-color: rgba(255, 255, 255, .5);
+    padding:0;
   }
   
   body{
@@ -30,4 +45,5 @@
 
   #App{
     height: 100%;
+    overflow: hidden;
   }

@@ -1,11 +1,20 @@
 @import './../../sharedStyles/spacer';
+@import './../../sharedStyles/colors';
 .chat{
     display: flex;
     font-weight: lighter;
     & > div{
         padding: $baseSpacer / 2;
+        display: flex;
+        & > div{
+            margin-top: auto;
+        }
     }
     &-right{
         flex-direction: row-reverse;
+        .chatBubble {
+            background-color: $primary;
+            color: $white;
+        }
     }
 }
